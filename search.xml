@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Hello World 2]]></title>
+    <url>%2F2017%2F07%2F06%2Fhello-world2%2F</url>
+    <content type="text"><![CDATA[Welcome to my blog 2. ^_^]]></content>
+      <categories>
+        <category>test2</category>
+      </categories>
+      <tags>
+        <tag>test2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2017%2F07%2F06%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to my blog. ^_^]]></content>
+      <categories>
+        <category>test</category>
+      </categories>
+      <tags>
+        <tag>test</tag>
+      </tags>
+  </entry>
+</search>
