@@ -1,25 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Hello World 2]]></title>
-    <url>%2F2017%2F07%2F06%2Fhello-world2%2F</url>
-    <content type="text"><![CDATA[Welcome to my blog 2. ^_^]]></content>
+    <title><![CDATA[无题]]></title>
+    <url>%2F2017%2F07%2F10%2F%E6%97%A0%E9%A2%98%2F</url>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 之前的博客好久没整理了，现在也懒得去把它们翻出来。刚好年初的时候看到了 hexo 和 next ，感觉挺不错的。闲暇之余，又把博客重新拾起来，每天都比较忙，零碎的时间有时不知做些什么，思考了下还是写日志吧，写写技术分享，写写踩的坑，再偶尔写写随笔记录下自己，就酱紫。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 博客初建，有待优化，内容也会慢慢填充起来，欢迎大家提建议。关于里有我的联系方式。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 初次见面，请多指教！]]></content>
       <categories>
-        <category>test2</category>
+        <category>随笔</category>
       </categories>
       <tags>
-        <tag>test2</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2017%2F07%2F06%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to my blog. ^_^]]></content>
-      <categories>
-        <category>test</category>
-      </categories>
-      <tags>
-        <tag>test</tag>
+        <tag>第一篇</tag>
+        <tag>不知所云</tag>
       </tags>
   </entry>
 </search>
