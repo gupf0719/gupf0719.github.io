@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[服务号开发踩坑记录]]></title>
+    <url>%2F2017%2F07%2F30%2F%E5%BE%AE%E4%BF%A1%E6%9C%8D%E5%8A%A1%E5%8F%B7%2F</url>
+    <content type="text"><![CDATA[最近因为需求，在开发服务号，难度不大，主要注意一些坑由于我用 go 开发，所以贴的代码段都是 go 写的 配置和服务号对接，只支持80和443端口，如果被占用了，nignx转发一下 假如你服务器的 url 是 127.0.0.1:8080/url ，找到你的 nginx.conf ，在其中加入如下代码，443同理 1234567891011121314server &#123; listen 80; server_name localhost; ... location /url&#123; proxy_pass http://127.0.0.1:8080/url ; proxy_redirect off; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; &#125; ...&#125; 配置完以后 nginx -t 检测一下，然后重启就ok了 nginx -s reload 若提示配置失败，可以去查看一下服务器是否能收到服务号的 get 请求，获取的参数是否正确，签名是否加密正确等等 获取 access_token建议只有唯一的服务器可以获取 access_token ，避免出现有效时间(7200s)内 token 失效的情况，返回 errcode 40001 此外，还可以提供被动刷新 access_token 的接口，这样一旦出现意外，可以外部触发 access_token 的刷新 菜单自定菜单，要求必须的参数的值不仅要传且不能为空 可以监听用户对菜单的操作，以下操作会有推送 点击菜单拉取消息时的事件推送 点击菜单跳转链接时的事件推送 scancode_push：扫码推事件的事件推送 scancode_waitmsg：扫码推事件且弹出“消息接收中”提示框的事件推送 pic_sysphoto：弹出系统拍照发图的事件推送 pic_photo_or_album：弹出拍照或者相册发图的事件推送 pic_weixin：弹出微信相册发图器的事件推送 location_select：弹出地理位置选择器的事件推送 ps: 第3个到第8个的所有事件，仅支持微信iPhone5.4.1以上版本，和Android5.4以上版本的微信用户 消息接收消息微信推来的消息是 xml 格式的，我的接收消息的 struct 是这样的，主要接收一些事件和文本消息 123456789101112// 微信推的消息type WechatPush struct &#123; XMLName xml.Name `xml:&quot;xml&quot;` ToUserName string // 开发者微信号 FromUserName string // 发送方帐号（一个OpenID） CreateTime int // 消息创建时间 （整型） MsgType string // 消息类型 text event 等 Event string // 事件类型 EventKey string // 事件KEY值 Content string // 文本消息内容 MsgId int64 // 消息id&#125; 同时，监听到这些消息后可以对用户做出相应的回应，关键词回复也可在这里完成 那么问题来了，如果你监听到了用户的文本消息，且不作出回应的话，就会出现问题 假如服务器无法保证在五秒内处理并回复，必须做出下述回复，这样微信服务器才不会对此作任何处理，并且不会发起重试（这种情况下，可以使用客服消息接口进行异步回复），否则，将出现严重的错误提示。微信都会在公众号会话中，向用户下发系统提示“该公众号暂时无法提供服务，请稍后再试”。 解决办法如下： 直接回复success（推荐方式） 直接回复空串（指字节长度为0的空字符串，而不是XML结构体中content字段的内容为空） 见下文(如果有客服的话) 客服消息没遇到什么问题，简单说下转发消息给客服，这是新版客服功能。之前有说过，可以监听到用户操作反馈的消息，那么就可以转发给客服。只需要将 MsgType 设置为 transfer_customer_service ，若要指定客服，带上参数 KfAccount (会话接入的客服账号) 模版消息这里也比较简单，模版可以在模版库里搜索和添加，当然也可以自定义，每月仅三次 其他第三方若想拿到当前微信用户的 openid ，可以通过微信网页授权来完成。 结尾若有什么问题和疑问，可以给通过邮件或者微信等方式联系我]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>开发</tag>
+        <tag>go</tag>
+        <tag>服务号</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[无题]]></title>
     <url>%2F2017%2F07%2F10%2F%E6%97%A0%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 之前的博客好久没整理了，现在也懒得去把它们翻出来。刚好年初的时候看到了 hexo 和 next ，感觉挺不错的。闲暇之余，又把博客重新拾起来，每天都比较忙，零碎的时间有时不知做些什么，思考了下还是写日志吧，写写技术分享，写写踩的坑，再偶尔写写随笔记录下自己，就酱紫。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 博客初建，有待优化，内容也会慢慢填充起来，欢迎大家提建议。关于里有我的联系方式。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 初次见面，请多指教！]]></content>
+    <content type="text"><![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 之前的博客好久没整理了，现在也懒得去把它们翻出来。刚好年初的时候看到了 hexo 和 next ，感觉挺不错的。闲暇之余，又把博客重新拾起来，每天都比较忙，零碎的时间有时不知做些什么，思考了下还是写日志吧，写写技术分享，写写踩的坑，再偶尔写写随笔记录下自己，就酱紫。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 博客初建，有待优化，内容也会慢慢填充起来，欢迎大家提建议。关于里有我的联系方式。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 初次见面，请多指教！]]></content>
       <categories>
         <category>随笔</category>
       </categories>
