@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="最近因为需求，在开发服务号，难度不大，主要注意一些坑由于我用 go 开发，所以贴的代码段都是 go 写的 配置和服务号对接，只支持80和443端口，如果被占用了，nignx转发一下">
+<meta name="description" content="最近因为需求，在开发服务号，难度不大，主要注意一些坑由于我用 go 开发，所以贴的代码段都是 go 写的 配置和服务号对接，只支持80和443端口，如果被占用了，nginx 转发一下">
 <meta name="keywords" content="开发,go,服务号">
 <meta property="og:type" content="article">
 <meta property="og:title" content="服务号开发踩坑记录">
 <meta property="og:url" content="http://yoursite.com/2017/07/30/微信服务号/index.html">
 <meta property="og:site_name" content="印记">
-<meta property="og:description" content="最近因为需求，在开发服务号，难度不大，主要注意一些坑由于我用 go 开发，所以贴的代码段都是 go 写的 配置和服务号对接，只支持80和443端口，如果被占用了，nignx转发一下">
-<meta property="og:updated_time" content="2017-07-30T12:00:20.000Z">
+<meta property="og:description" content="最近因为需求，在开发服务号，难度不大，主要注意一些坑由于我用 go 开发，所以贴的代码段都是 go 写的 配置和服务号对接，只支持80和443端口，如果被占用了，nginx 转发一下">
+<meta property="og:updated_time" content="2017-08-04T08:14:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="服务号开发踩坑记录">
-<meta name="twitter:description" content="最近因为需求，在开发服务号，难度不大，主要注意一些坑由于我用 go 开发，所以贴的代码段都是 go 写的 配置和服务号对接，只支持80和443端口，如果被占用了，nignx转发一下">
+<meta name="twitter:description" content="最近因为需求，在开发服务号，难度不大，主要注意一些坑由于我用 go 开发，所以贴的代码段都是 go 写的 配置和服务号对接，只支持80和443端口，如果被占用了，nginx 转发一下">
 
 
 
@@ -402,7 +402,7 @@
 
       
         <p>最近因为需求，在开发服务号，难度不大，主要注意一些坑<br>由于我用 go 开发，所以贴的代码段都是 go 写的</p>
-<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>和服务号对接，只支持80和443端口，如果被占用了，nignx转发一下 <a id="more"></a> <br> 假如你服务器的 url 是 127.0.0.1:8080/url ，找到你的 nginx.conf ，在其中加入如下代码，443同理</p>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><p>和服务号对接，只支持80和443端口，如果被占用了，nginx 转发一下 <a id="more"></a> <br> 假如你服务器的 url 是 127.0.0.1:8080/url ，找到你的 nginx.conf ，在其中加入如下代码，443同理</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">	listen 80;</div><div class="line">	server_name localhost;</div><div class="line">	...</div><div class="line">	</div><div class="line">	location /url&#123;</div><div class="line">        proxy_pass http://127.0.0.1:8080/url ; </div><div class="line">        proxy_redirect off;</div><div class="line">        proxy_set_header Host $host;</div><div class="line">        proxy_set_header X-Real-IP $remote_addr;</div><div class="line">        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</div><div class="line">    &#125;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>配置完以后 <code>nginx -t</code> 检测一下，然后重启就ok了 <code>nginx -s reload</code> <br> 若提示配置失败，可以去查看一下服务器是否能收到服务号的 get 请求，获取的参数是否正确，签名是否加密正确等等</p>
 <h3 id="获取-access-token"><a href="#获取-access-token" class="headerlink" title="获取 access_token"></a>获取 access_token</h3><p>建议只有唯一的服务器可以获取 access_token ，避免出现有效时间(7200s)内 token 失效的情况，返回 errcode 40001 <br> 此外，还可以提供被动刷新 access_token 的接口，这样一旦出现意外，可以外部触发 access_token 的刷新</p>
