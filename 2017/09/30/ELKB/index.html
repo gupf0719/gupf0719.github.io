@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="印记">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp; 因需要对 log 进行收集处理，简单搜了下后决定还是使用 Elastic Stack ，开源且成熟，而且 Elasticsearch 是一个基于 Apache Lucene 的开源搜索引擎，Lucene 我就不多介绍了，感兴趣的可以自己查下资料，Lucene 还是不错的。不啰嗦，进入正题">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-12T12:09:22.726Z">
+<meta property="og:updated_time" content="2017-10-12T12:34:11.717Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Elastic Stack 搭建">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &amp;nbsp;&amp;nbsp;&amp;nbsp; 因需要对 log 进行收集处理，简单搜了下后决定还是使用 Elastic Stack ，开源且成熟，而且 Elasticsearch 是一个基于 Apache Lucene 的开源搜索引擎，Lucene 我就不多介绍了，感兴趣的可以自己查下资料，Lucene 还是不错的。不啰嗦，进入正题">
@@ -402,7 +402,7 @@
       
 
       
-        <p><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 因需要对 log 进行收集处理，简单搜了下后决定还是使用 Elastic Stack ，开源且成熟，而且 Elasticsearch 是一个基于 Apache Lucene 的开源搜索引擎，Lucene 我就不多介绍了，感兴趣的可以自己查下资料，Lucene 还是不错的。不啰嗦，进入正题 ！ <a id="more"></a><br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Elastic Stack 主要分四个模块，Beats, Logstash, Elasticsearch 和 Kibana 。简单说下，Beats 主要负责采集数据，而我主要用 FileBeat 和 HeartBeat ，前者日志收集后者是服务器和项目的心跳收集；Logstash 主要实时解析和转换数据；Elasticsearch 在存储数据的同时还是分布式的 RESTful 风格的搜索和数据分析引擎；Kibana 能够可视化 Elasticsearch 中的数据并操作 Elastic Stack。<br><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ELK 我主要使用容器搭建，Beats则直接安装在边缘服务器上，由于5.6.2开始搭载 X-Pack ，各个部分直接连接已经需要权限，所以初次搭建的时候就没用 docker compose ，接下来，我会一一介绍各个部分的快速部署及部分注意点。</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 因需要对 log 进行收集处理，简单搜了下后决定还是使用 Elastic Stack ，开源且成熟，而且 Elasticsearch 是一个基于 Apache Lucene 的开源搜索引擎，Lucene 我就不多介绍了，感兴趣的可以自己查下资料，Lucene 还是不错的。不啰嗦，进入正题 ！ <a id="more"></a><br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Elastic Stack 主要分四个模块，Beats, Logstash, Elasticsearch 和 Kibana 。简单说下，Beats 主要负责采集数据，而我主要用 FileBeat 和 HeartBeat ，前者日志收集后者是服务器和项目的心跳收集；Logstash 主要实时解析和转换数据；Elasticsearch 在存储数据的同时还是分布式的 RESTful 风格的搜索和数据分析引擎；Kibana 能够可视化 Elasticsearch 中的数据并操作 Elastic Stack。<br><br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; ELK 我主要使用容器搭建，Beats则直接安装在边缘服务器上，由于5.6.2开始搭载 X-Pack ，各个部分直接连接已经需要权限，所以初次搭建的时候就没用 docker compose ，接下来，我会一一介绍各个部分的快速部署及部分注意点。</p>
 
       
     </div>
