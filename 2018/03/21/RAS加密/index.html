@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="印记">
 <meta property="og:description" content="概念质数质数定义为在大于1的自然数中，除了1和它本身以外不再有其他因数。 互质在数论中，如果两个或两个以上的整数的最大公约数是 1，则称它们为互质。例如 8 与 10 的最大公约数是 2，不是 1，因此它们并不互质。又例如 7, 10, 13 的最大公约数是 1，因此它们互质。 关于互质关系，不难得到以下结论： 　　1. 两个不同的素数一定互质。例如，2与7、13与19。 　　2. 一个素数，另一">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-29T14:30:53.532Z">
+<meta property="og:updated_time" content="2018-03-29T14:49:12.793Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="RAS加密">
 <meta name="twitter:description" content="概念质数质数定义为在大于1的自然数中，除了1和它本身以外不再有其他因数。 互质在数论中，如果两个或两个以上的整数的最大公约数是 1，则称它们为互质。例如 8 与 10 的最大公约数是 2，不是 1，因此它们并不互质。又例如 7, 10, 13 的最大公约数是 1，因此它们互质。 关于互质关系，不难得到以下结论： 　　1. 两个不同的素数一定互质。例如，2与7、13与19。 　　2. 一个素数，另一">
@@ -412,7 +412,7 @@
 <p>　　5. 相邻两个奇数互质。如49与51。</p>
 <p>　　6. 较大数是素数，则两个数互质。如97与88。</p>
 <p>　　7. 两数和是素数，则两个数互质。如52与45。</p>
-<p>　　8. …</p>
+<p>　　8. …<br><a id="more"></a></p>
 <h4 id="欧拉函数"><a href="#欧拉函数" class="headerlink" title="欧拉函数"></a>欧拉函数</h4><p>在数论中，对正整数 n，欧拉函数 φ(n) 是小于或等于n的正整数中与 n 互质的数的数目。此函数以其首名研究者欧拉命名，它又称为 φ函数（由高斯所命名）。例如 φ(8) = 4，因为 1,3,5,7 均和 8 互质。</p>
 <ol>
 <li>如果 n=1，则 φ(1) = 1 。因为1与任何数（包括自身）都构成互质关系。</li>
@@ -428,12 +428,13 @@
 <li>第二步，计算p和q的乘积n<br><br> <strong>n = 61×53 = 3233</strong> <br>(n的长度就是密钥长度。3233写成二进制是110010100001，一共有12位，所以这个密钥就是12位。实际应用中，RSA密钥一般是1024位，重要场合则为2048位。)<br><br><br></li>
 <li>第三步，计算n的欧拉函数φ(n)。<br><br> 根据 <strong>φ(n) = (p-1)(q-1) ， φ(3233) = 60 * 52 = 3120</strong><br><br><br></li>
 <li>第四步，随机选择一个整数e，条件是1&lt; e &lt; φ(n)，且e与φ(n) 互质。<br><br> 在1到3120之间，随机选择了17， <strong>e = 17</strong>。<br><br><br></li>
-<li>第五步，计算e对于φ(n)的模反元素d。<br><br><br><code>ed ≡ 1 (mod φ(n))</code><br><br><br> 这个式子等价于<br><br><code>ed - 1 = kφ(n)</code><br><br><br> 于是，找到模反元素d，实质上就是对下面这个二元一次方程求解。 <br><br><code>ex + φ(n)y = 1</code><br><br><br> 已知 e=17, φ(n)=3120 <br><figure class="highlight plain"><figcaption><span>+ 3120y </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;/br&gt;&lt;/br&gt;找出一组整数解&amp;nbsp; **x=-367,y=2** &amp;nbsp;</div><div class="line">&lt;/br&gt;在找到 p * a+q * b = Gcd(a, b) 的一组解 p0,q0 后，p * a+q * b = Gcd(a, b) 的其他整数解满足：</div></pre></td></tr></table></figure>
+<li><p>第五步，计算e对于φ(n)的模反元素d。<br><br><br><code>ed ≡ 1 (mod φ(n))</code><br><br><br> 这个式子等价于<br><br><code>ed - 1 = kφ(n)</code><br><br><br> 于是，找到模反元素d，实质上就是对下面这个二元一次方程求解。 <br><br><code>ex + φ(n)y = 1</code><br><br><br> 已知 e=17, φ(n)=3120 <br><br><code>17x + 3120y = 1</code><br><br><br>找出一组整数解&nbsp; <strong>x=-367,y=2</strong> &nbsp;<br><br>在找到 p <em> a+q </em> b = Gcd(a, b) 的一组解 p0,q0 后，p <em> a+q </em> b = Gcd(a, b) 的其他整数解满足：</p>
+<pre><code>p = p0 + b/Gcd(a, b) * t
+q = q0 - a/Gcd(a, b) * t(其中t为任意整数)
+</code></pre><p><br>推出以下解：</p>
 </li>
-</ul>
-<p>p = p0 + b/Gcd(a, b) <em> t<br>q = q0 - a/Gcd(a, b) </em> t(其中t为任意整数)<br>```<br><br>推出以下解：</p>
-<ul>
-<li>用扩展欧几里德算法求出，一组整数解为 <br><br><br><strong>(x,y)=(2753,-15)</strong><br><br><br></li>
+<li><p>用扩展欧几里德算法求出，一组整数解为 <br><br><br><strong>(x,y)=(2753,-15)</strong><br><br><br></p>
+</li>
 </ul>
 <h2 id="加密和解密"><a href="#加密和解密" class="headerlink" title="加密和解密"></a>加密和解密</h2><ol>
 <li>加密要用公钥 (n,e)，公钥是 (3233, 17) <br><br><br><code>me ≡ c (mod n)</code><br><br><br>假设 m=65 推出下面等式 <br><br><code>6517 ≡ 2790 (mod 3233)</code><br>即 <strong>c = 2790</strong> <br><br></li>
